@@ -201,7 +201,7 @@ const CourseDetail = () => {
         </div>
 
         {/* Right Side Course Card */}
-        <div className="max-w-course-card z-10 shadow-2xl 0px 4px 15px 2px rgba(0, 0, 0, 0.2); rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]">
+        <div className="max-w-[424px] z-10 shadow-2xl 0px 4px 15px 2px rgba(0, 0, 0, 0.2); rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]">
            {
                 playerData ? 
                    <YouTube videoId={playerData.videoId} opts={{
