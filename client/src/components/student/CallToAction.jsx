@@ -1,11 +1,31 @@
 import React from 'react'
-
-function CallToAction() {
+import { assets } from '../../assets/assets'
+function HeroSection() {
   return (
-    <div>
-      <h1>Call to Action</h1>
+    <div className="flex flex-col items-center gap-4 pt-10 pb-24 px-8 md:px-0">
+      {/* Heading */}
+      <h1 className="text-xl md:text-4xl font-semibold text-gray-800">
+        Learn anything, anytime, anywhere
+      </h1>
+
+      {/* Subtitle */}
+      <p className="text-gray-500 sm:text-sm ">
+        Incididunt sint fugiat pariatur cupidatat consectetur sit cillum anim id veniam aliqua
+        proident excepteur commodo do ea.
+      </p>
+
+      {/* Buttons */}
+      <div className="flex items-center font-medium gap-6 mt-4">
+        <button className="px-10 py-3 rounded-md text-white bg-blue-600">
+          Get Started
+        </button>
+        <button className="flex items-center gap-2">
+          Learn More
+          <img src={assets.arrow_icon} alt="arrow" />
+        </button>
+      </div>
     </div>
   )
 }
 
-export default CallToAction
+export default HeroSection

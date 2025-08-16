@@ -1,13 +1,13 @@
-import { useContext } from 'react';
-import React from 'react';
-import { assets } from '../../assets/assets';
-import { AppContext } from '../../context/AppContext';
-import { Link } from 'react-router-dom';
+import { useContext } from "react";
+import React from "react";
+import { assets } from "../../assets/assets";
+import { AppContext } from "../../context/AppContext";
+import { Link } from "react-router-dom";
 
 const CourseCard = ({ course }) => {
   const { currency, calculateRating } = useContext(AppContext);
-  const rating = calculateRating(course); // Calculate once for efficiency
-
+   // Calculate once for efficiency
+const rating = calculateRating(course);
   return (
     <Link
       to={`/course/${course._id}`}
@@ -24,7 +24,7 @@ const CourseCard = ({ course }) => {
       {/* Course Info */}
       <div className="p-3 text-left">
         <h3 className="text-base font-semibold">{course.courseTitle}</h3>
-        <p className="text-gray-500">{course.educator.name}</p>
+        <p className="text-gray-500">Nirmalya</p>
 
         {/* Rating */}
         <div className="flex items-center space-x-2">
@@ -61,12 +61,12 @@ const CourseCard = ({ course }) => {
               );
             })}
           </div>
-          <p className="text-gray-500">22</p>
+          <p className="text-gray-500">{course.courseRatings.length}</p>
         </div>
 
         {/* Price */}
         <p className="text-base font-semibold text-gray-800">
-          {currency}
+          ${currency}
           {(
             course.coursePrice -
             (course.discount * course.coursePrice) / 100

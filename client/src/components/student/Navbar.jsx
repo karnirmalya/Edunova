@@ -5,9 +5,11 @@ import { useClerk, UserButton, useUser } from '@clerk/clerk-react';
 import { AppContext } from '../../context/AppContext';
 
 export default function Navbar() {
-  const navigate = useNavigate(); // Use react-router navigation
+  const routerNavigate = useNavigate(); // ✅ React Router navigate
+  const { isEducator, setIsEducator } = useContext(AppContext);
   const location = useLocation();
   const isCourseListPage = location.pathname.includes('/course-list');
+
   const { openSignIn } = useClerk();
   const { user } = useUser();
 
@@ -18,14 +20,17 @@ export default function Navbar() {
       }`}
     >
       {/* Logo */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1">
         <img
-          onClick={() => navigate('/')}
-          src={assets.logoround}
+          onClick={() => routerNavigate('/')}
+          src={assets.logoupdated}
           alt="Edunova logo"
-          className="h-10 w-13 rounded-full cursor-pointer"
+          className="h-6 w-6 rounded-full cursor-pointer"
         />
-        <span onClick={() => navigate('/')} className="text-gray-900 font-bold text-xl tracking-tight">
+        <span
+          onClick={() => routerNavigate('/')}
+          className="text-gray-900 font-bold text-xl tracking-tight cursor-pointer"
+        >
           Edunova
         </span>
       </div>
@@ -35,8 +40,10 @@ export default function Navbar() {
         <div className="flex items-center gap-5">
           {user && (
             <>
-              <button>Become Educator</button>
-              <Link to="/my-enrollments">My Enrollments</Link>
+              <button onClick={() => routerNavigate('/educator')}>
+                {isEducator ? 'Educator Dashboard' : 'Become Educator'}
+              </button>
+              |<Link to="/my-enrollments">My Enrollments</Link>
             </>
           )}
         </div>
@@ -57,7 +64,9 @@ export default function Navbar() {
         <div className="flex items-center gap-1 sm:gap-5 max-sm:text-xs">
           {user && (
             <>
-              <button>Become Educator</button>
+              <button onClick={() => routerNavigate('/educator')}>
+                {isEducator ? 'Educator Dashboard' : 'Become Educator'}
+              </button>
               <Link to="/my-enrollments">My Enrollments</Link>
             </>
           )}
