@@ -28,7 +28,7 @@ const CourseDetail = () => {
 
   useEffect(() => {
     fetchCourseData();
-  }, [allCourses]);
+  }, [allCourses, id]);
 
   const toggleSection = (index) => {
     setOpenSections((prev) => ({
@@ -201,7 +201,7 @@ const CourseDetail = () => {
         </div>
 
         {/* Right Side Course Card */}
-        <div className="max-w-[424px] z-10 shadow-2xl 0px 4px 15px 2px rgba(0, 0, 0, 0.2); rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]">
+        <div className="max-w-[500px] z-10 shadow-2xl 0px 4px 15px 2px rgba(0, 0, 0, 0.2); rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]">
            {
                 playerData ? 
                    <YouTube videoId={playerData.videoId} opts={{
@@ -223,8 +223,8 @@ const CourseDetail = () => {
                 alt="time left clock icon"
                 className="w-3.5"
              />
-              <p className="text-red-500 animate-pulse">
-                <span className="font-medium "> 5 days</span> left at this price
+              <p className="text-red-500">
+                <span className="font-medium animate-ping"> 5 days</span> left at this price
               </p>
             </div>
 

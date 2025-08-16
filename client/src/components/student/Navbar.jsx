@@ -40,7 +40,7 @@ export default function Navbar() {
         <div className="flex items-center gap-5">
           {user && (
             <>
-              <button onClick={() => routerNavigate('/educator')}>
+              <button className="cursor-pointer" onClick={() => routerNavigate('/educator')}>
                 {isEducator ? 'Educator Dashboard' : 'Become Educator'}
               </button>
               |<Link to="/my-enrollments">My Enrollments</Link>
