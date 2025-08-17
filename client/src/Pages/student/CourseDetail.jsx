@@ -223,8 +223,8 @@ const CourseDetail = () => {
                 alt="time left clock icon"
                 className="w-3.5"
              />
-              <p className="text-red-500">
-                <span className="font-medium animate-ping"> 5 days</span> left at this price
+              <p className="text-red-500 animate-pulse">
+                <span className="font-medium "> 5 days</span> left at this price
               </p>
             </div>
 
