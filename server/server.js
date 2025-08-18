@@ -1,31 +1,22 @@
-import express from 'express';
-import cors from 'cors';
-import 'dotenv/config';
-import connectDB from './configs/mongodb.js';
-import { clerkWebhooks } from './controllers/webhooks.js';
+import express from "express";
+import cors from "cors";
+import connectDB from "./configs/mongodb.js";
+import { clerkWebhooks } from "./controllers/webhook.js";
 
 const app = express();
-
-// Middleware
 app.use(cors());
 
-// Routes
-app.get('/', (req, res) => res.send("API working"));
-app.post('/clerk', express.json(), clerkWebhooks);
+// Middleware to get raw body for Clerk
+app.use(
+  "/clerk/webhook",
+  express.raw({ type: "application/json" }),
+  clerkWebhooks
+);
+app.post('/clerk', clerkWebhooks);
 
-// Start server after DB connection
+app.get("/", (req, res) => res.send("API running"));
+
 const PORT = process.env.PORT || 5000;
-
-const startServer = async () => {
-  try {
-    await connectDB(); // connect to DB first
-    app.listen(PORT, () => {
-      console.log(`✅ Server is running on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error("❌ Database connection failed:", error.message);
-    process.exit(1);
-  }
-};
-
-startServer();
+connectDB().then(() => {
+  app.listen(PORT, () => console.log(`✅ Server running on ${PORT}`));
+});
